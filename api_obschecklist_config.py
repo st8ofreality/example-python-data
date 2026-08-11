@@ -19,9 +19,14 @@ def get_api_token():
         raise EnvironmentError("API token not found in environment variables. Please set the TRAINING_API_TOKEN environment variable.")
     return api_token
 
+def get_api_url():
+    """Capture API Base URL from OS environment variable."""
+    return os.getenv('TRAINING_API_URL', 'https://api.example.com')
+
 def fetch_checklist_data(api_token, checklist_id):
     """Fetch checklist data from the Training LMS API."""
-    url = f"API_URL"
+    api_url = get_api_url()
+    url = f"{api_url}/checklists/{checklist_id}"
     headers = {
         "Authorization": f"Bearer {api_token}",
         "Content-Type": "application/json"

@@ -20,11 +20,16 @@ def get_api_token():
         raise EnvironmentError("API token not found in environment variables. Please set the TRAINING_API_TOKEN environment variable.")
     return api_token
 
+def get_api_url():
+    """Capture API Base URL from OS environment variable."""
+    return os.getenv('TRAINING_API_URL', 'https://api.example.com')
+
 #%%
 def export_report(api_token, report_id):
     """Initiate report export and retrieve execution_id."""
-    url = f'{API_URL}/{report_id}/export/csv'
-    #url = f'{API_URL}/{report_id}/export/xlsx'
+    api_url = get_api_url()
+    url = f'{api_url}/{report_id}/export/csv'
+    #url = f'{api_url}/{report_id}/export/xlsx'
 
     headers = {
         "accept": "application/json, text/plain, */*",
@@ -49,7 +54,8 @@ def export_report(api_token, report_id):
 #%%
 def check_report_status(api_token, report_id, execution_id):
     """Check the status of the report export until it is completed."""
-    url = f'{API_URL}/{report_id}/exports/{execution_id}'
+    api_url = get_api_url()
+    url = f'{api_url}/{report_id}/exports/{execution_id}'
     headers = {
         "Authorization": f"Bearer {api_token}", 
         "Content-Type": "application/json"
@@ -77,7 +83,8 @@ def check_report_status(api_token, report_id, execution_id):
 #%%
 def download_report(api_token, report_id, execution_id, output_path):
     """Download the exported report file to the specified filepath."""
-    url = f'{API_URL}/{report_id}/exports/{execution_id}/download'
+    api_url = get_api_url()
+    url = f'{api_url}/{report_id}/exports/{execution_id}/download'
     headers = {
         "Authorization": f"Bearer {api_token}", 
         "Content-Type": "application/json"

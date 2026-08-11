@@ -96,9 +96,9 @@ def generate_stages_pivot(df, output_dir, file_name_without_extension):
     eligible_statuses = ["Completed", "In Progress", "Subscribed", "No Cert", "Grandfathered"]
 
     df_nocerts= df[
-        (df['Product'].str.lower() != 'serverless') &
-        (df['Product'].str.lower() != 'synthetics & rum') &
-        (df['Product'].str.lower() != 'security')
+        (df['Product'].str.lower() != 'product x') &
+        (df['Product'].str.lower() != 'product y') &
+        (df['Product'].str.lower() != 'product z')
     ]
 
 
@@ -131,9 +131,9 @@ def generate_stuck_phases_pivot(df, output_dir, file_name_without_extension):
 
     # Step 2: Filter to exclude specific products
     df_filtered = df[
-        (df['Product'].str.lower() != 'serverless') &
-        (df['Product'].str.lower() != 'synthetics & rum') &
-        (df['Product'].str.lower() != 'security')
+        (df['Product'].str.lower() != 'product x') &
+        (df['Product'].str.lower() != 'product y') &
+        (df['Product'].str.lower() != 'product z')
     ]
 
     # Step 3: Melt the DataFrame to long format based on 'Weeks Category' and 'Product'

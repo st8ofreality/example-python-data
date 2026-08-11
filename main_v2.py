@@ -45,10 +45,10 @@ def get_dual_paths(operation):
 def main():
     print("Select the scripts to run (comma-separated numbers for multiple selections):")
     print("1. Program Health Script V6")
-    print("2. GSE Summary Program Overview")
-    print("3. Docebo API Report (.json required)")
-    print("4. Docebo API Observation Checklist (.json required)")
-    print("5. GSE Product Spec V2")
+    print("2. Summary Program Overview")
+    print("3. LMS API Report (.json required)")
+    print("4. LMS API Observation Checklist (.json required)")
+    print("5. Product Spec V2")
     print("6. Merge Spec and TM reports")
     
     choices = input("Enter your choices: ").split(',')
@@ -61,17 +61,17 @@ def main():
             _, input_file_path, file_name_without_extension, file_extension, output_dir, _, _ = get_file_paths('Program Health Script V6')
             program_health_script_v6.process(input_file_path, file_name_without_extension, file_extension, output_dir)
         elif choice == '2':
-            _, input_file_path, file_name_without_extension, file_extension, output_dir, _, _ = get_file_paths('GSE Summary Program Health')
+            _, input_file_path, file_name_without_extension, file_extension, output_dir, _, _ = get_file_paths('Summary Program Health')
             createtraining_summary_overviewcount.process(input_file_path, file_name_without_extension, file_extension, output_dir)
         elif choice == '3':
-            _, input_file_path, _, file_extension, _, report_output_dir, _ = get_file_paths('Docebo API Report')
+            _, input_file_path, _, file_extension, _, report_output_dir, _ = get_file_paths('LMS API Report')
             api_report_config.process(input_file_path, file_extension, report_output_dir)
         elif choice == '4':
-            _, input_file_path, _, file_extension, _, _, checklist_output_dir = get_file_paths('Docebo API Observation Checklist')
+            _, input_file_path, _, file_extension, _, _, checklist_output_dir = get_file_paths('LMS API Observation Checklist')
             api_obschecklist_config.process(input_file_path, file_extension, checklist_output_dir)
         elif choice == '5':
-            # Handle GSE Product Spec V2
-            _, input_file_path, file_name_without_extension, file_extension, output_dir, _, _ = get_file_paths('GSE Product Spec V2')
+            # Handle Product Spec V2
+            _, input_file_path, file_name_without_extension, file_extension, output_dir, _, _ = get_file_paths('Product Spec V2')
             pivotdata_v2_module.process(input_file_path, file_name_without_extension, file_extension, output_dir)
         elif choice == '6':
             # Using get_dual_paths to handle merging Spec and TM reports
